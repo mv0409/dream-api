@@ -36,17 +36,22 @@ GET http://localhost:3000/api/dream/all-dream-types HTTP/1.1
 GET http://localhost:3000/api/dream/read HTTP/1.1
 
 
-# dream/search/?page=1&limit=10
+//// To filter between dates  ////
 
+// Add an object with a name dateBetween, with props gt and lt, value shoud be a date
+
+// "dateBetween" : {
+//    "gt" : "04-04-1990",
+//     "lt" : "02-04-2020"
+// }
 ###
-# POST http://localhost:3000/api/dream/search HTTP/1.1
 POST http://localhost:3000/api/dream/search?page=1&limit=2 HTTP/1.1
 Content-Type: application/json
 
 {
     "title":"special",
-    "date" : {
-        "gt" : "04-04-2000",
-        "lt" : "23-4-2020"
+    "dateBetween" : {
+        "gt" : "04-04-1990",
+        "lt" : "02-04-2020"
     }
 }
