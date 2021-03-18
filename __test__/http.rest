@@ -1,0 +1,30 @@
+
+###
+POST http://localhost:3000/api/dream/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "title" : "interesting",
+    "description": "some dream i had",
+    "date" : "12.4.2021",
+    "type": "happy"
+}
+
+###
+POST http://localhost:3000/api/dream/60535e82df908fcd9089d459/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "title" : "interesting",
+    "description": "some dream i had",
+    "date" : "12.4.2021",
+    "type": "happy"
+}
+
+###
+DELETE http://localhost:3000/api/dream/60535f039988a7d09aff46a9/delete HTTP/1.1
+Content-Type: application/json
+
+
+###
+GET http://localhost:3000/api/dream/all-dream-types HTTP/1.1
