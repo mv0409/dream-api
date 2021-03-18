@@ -8,8 +8,7 @@ export const CreateDreamController = () => {
 		try {
 			const result = req.body;
 
-			const dream = await Dream.create(result);
-
+			const dream =  await Dream.create(result);
 			return {
 				headers: {
 					'Content-Type': 'application/json',

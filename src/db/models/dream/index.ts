@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 interface DreamAttr {
 	title: string;
 	description: string;
-	date: string;
+	date: Date;
 	type: Enumerator;
 }
 
@@ -16,7 +16,7 @@ interface DreamModel extends mongoose.Model<DreamDoc> {
 interface DreamDoc extends mongoose.Document {
 	title: string;
 	description: string;
-	date: string;
+	date: Date;
 	type: Enumerator;
 }
 
@@ -31,7 +31,7 @@ const dreamSchema = new mongoose.Schema(
 			required: true,
 		},
 		date: {
-			type: String,
+			type: Date,
 			required: true,
 		},
 		type: {

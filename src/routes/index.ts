@@ -39,6 +39,11 @@ class Routes {
 			`${this.routePrefix}/dream/read`,
 			cb(this.dreamController.readDream()),
 		);
+		// ?page=1?limit=10
+		this.router.post(
+			`${this.routePrefix}/dream/search`,
+			cb(this.dreamController.searchDream()),
+		)
 	}
 }
 

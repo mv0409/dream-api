@@ -6,6 +6,7 @@ export interface HttpResponse {
         error?: string,
         data?: any,
         message?: string
+        pagination?: any
     },
     cookie?: string,
     clearCookie?: string
