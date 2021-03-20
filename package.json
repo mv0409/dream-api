@@ -4,8 +4,8 @@
 	"description": "",
 	"scripts": {
 		"dev": "nodemon ./src/index.ts",
-		"start": "node dist/src/index.js",
-		"clean": "rimraf coverage dist tmp",
+		"start": "node build/src/index.js",
+		"clean": "rimraf coverage build tmp",
 		"build": "tsc -p tsconfig.release.json",
 		"build:watch": "tsc -w -p tsconfig.release.json",
 		"lint": "eslint . --ext .ts,.tsx"
