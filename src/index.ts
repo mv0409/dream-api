@@ -1,9 +1,10 @@
-import App from './app'
-import DreamController from './controllers/dream';
+import App from './app';
+import { controllers } from './controllers';
+import Database from './db';
 import Routes from './routes';
 
-const dreamController = new DreamController()
-const routes = new Routes(dreamController)
-const app = new App(routes);
+const database = new Database();
+const routes = new Routes(controllers);
+const app = new App(routes, database);
 
 app.listen();

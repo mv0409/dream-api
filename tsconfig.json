@@ -20,5 +20,5 @@
 		"strictNullChecks": true,
 		"experimentalDecorators": true
 	},
-	"include": ["src/**/*", "__tests__/**/*"]
+	"include": ["src/**/*", "__test__/**/*"]
 }

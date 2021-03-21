@@ -1,4 +1,4 @@
-import { Dream } from '../../db/models/dream';
+import { Dream } from '../../db/entity/dream';
 import { makeHttpError } from '../../helpers/errors/http-error';
 import { HttpResponse } from '../../helpers/interfaces/http-response';
 

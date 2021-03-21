@@ -1,12 +1,11 @@
-import { possibleTypes } from '../../db/models/dream';
+import { possibleTypes } from '../../db/entity/dream';
 import { makeHttpError } from '../../helpers/errors/http-error';
 import { HttpResponse } from '../../helpers/interfaces/http-response';
 
 export const AllDreamTypesController = () => {
-	return async () : Promise<HttpResponse> => {
+	return async (): Promise<HttpResponse> => {
 		try {
-
-			const type = possibleTypes
+			const type = possibleTypes;
 			return {
 				headers: {
 					'Content-Type': 'application/json',
@@ -14,15 +13,14 @@ export const AllDreamTypesController = () => {
 				statusCode: 200,
 				payload: {
 					success: true,
-					data: type
+					data: type,
 				},
 			};
 		} catch (error) {
 			return makeHttpError({
 				statusCode: 400,
-				errorMessage: error.message
-			})
+				errorMessage: error.message,
+			});
 		}
 	};
 };
-

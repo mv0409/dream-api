@@ -1,38 +1,24 @@
 import { Request, Response } from 'express';
+import { ControllerInterface } from '../../helpers/interfaces/controller.interface';
+import { HttpResponse } from '../../helpers/interfaces/http-response';
 
-export default function expressCb(controller: any) {
-	return (req: Request, res: Response) => {
-		const httpRequest = {
-			body: req.body,
-			query: req.query,
-			params: req.params,
-			ip: req.ip,
-			method: req.method,
-			path: req.path,
-			headers: {
-				'Content-Type': req.get('Content-Type'),
-				Referer: req.get('referer'),
-				'User-Agent': req.get('User-Agent'),
-			},
-		};
+export default function expressCb(controller: ControllerInterface) {
+	return (req: Request, res: Response): void => {
+		const httpRequest: Request = req;
 
 		controller(httpRequest)
 			.then(
 				({
 					headers,
 					statusCode,
-					payload
-				}: {
-					headers: any;
-					statusCode: number;
-					payload: any;
-				}) => {
+					payload,
+				}: HttpResponse) => {
 					res.status(statusCode)
 						.set(headers)
 						.send(payload);
-				}
+				},
 			)
-			.catch((e: any) => {
+			.catch((e: Error) => {
 				res.status(500).end();
 				console.log(e);
 			});

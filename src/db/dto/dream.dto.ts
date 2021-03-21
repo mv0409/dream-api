@@ -1,6 +1,5 @@
 import { IsString } from 'class-validator';
 
-
 class DreamDto {
 	@IsString({ always: true })
 	public title!: string;

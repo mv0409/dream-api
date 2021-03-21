@@ -1,3 +1,4 @@
+import { ControllerInterface } from '../../helpers/interfaces/controller.interface';
 import { AllDreamTypesController } from './all-dream-types.controller';
 import { CreateDreamController } from './create-dream-controller';
 import { DeleteDreamController } from './delete-dream-controller';
@@ -6,23 +7,23 @@ import { SearchDreamController } from './search-dream.controller';
 import { UpdateDreamController } from './update-dream-controller';
 
 class DreamController {
-	getAllDreamTypes() {
+	getAllDreamTypes(): ControllerInterface {
 		return AllDreamTypesController();
 	}
-	createDream() {
+	createDream(): ControllerInterface {
 		return CreateDreamController();
 	}
-	updateDream() {
+	updateDream(): ControllerInterface {
 		return UpdateDreamController();
 	}
-	deleteDream() {
+	deleteDream(): ControllerInterface {
 		return DeleteDreamController();
 	}
-	readDream() {
+	readDream(): ControllerInterface {
 		return ReadDreamController();
 	}
-	searchDream() {
-		return SearchDreamController()
+	searchDream(): ControllerInterface {
+		return SearchDreamController();
 	}
 }
 
