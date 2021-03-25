@@ -1,6 +1,7 @@
 import express from 'express';
 import Database from '../db';
 import { env } from '../env';
+import logging from '../helpers/log/logging';
 import Routes from '../routes';
 
 class App {
@@ -22,13 +23,13 @@ class App {
 		this.app.use(express.urlencoded({ extended: true }));
 	}
 
-	private initDatabase() {
+	private initDatabase(): void {
 		this.database.connect();
 	}
 
-	public listen() {
+	public listen(): void {
 		this.app.listen(this.port, () => {
-			console.log(`App listening on the port ${this.port}`);
+			logging.info('SERVER', `APP IS RUNNING ${this.port}`);
 		});
 	}
 }

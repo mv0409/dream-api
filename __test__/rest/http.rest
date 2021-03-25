@@ -4,10 +4,10 @@ POST http://localhost:3000/api/dream/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "title" : "special",
-    "description": "some dream i had",
-    "date" : "04.9.1990",
-    "type": "scary"
+  "title": "Principal Integration Planner",
+  "description": "Chief",
+  "date": "5.2.2021",
+  "type":"happy"
 }
 
 ###
@@ -49,7 +49,6 @@ POST http://localhost:3000/api/dream/search?page=1&limit=2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "title":"special",
     "dateBetween" : {
         "gt" : "04-04-1990",
         "lt" : "02-04-2020"
