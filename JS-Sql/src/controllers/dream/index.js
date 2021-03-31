@@ -1,4 +1,4 @@
-import AllDreamTypesController from './all-dream.types.controller';
+import { AllDreamTypesController } from './all-dream.types.controller';
 import { CreateDreamController } from './create-dream.controller';
 import { DeleteDreamController } from './delete-dream.controller';
 import { ReadDreamController } from './read-dream.controller';

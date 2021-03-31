@@ -1,7 +1,7 @@
 import { Dream } from '../../../database/models';
 import HttpError from '../../helpers/errors/http-error';
 
-export default function AllDreamTypesController() {
+export const AllDreamTypesController = () => {
 	return async () => {
 		try {
 			const result = await Dream.rawAttributes.type.values;
@@ -23,4 +23,4 @@ export default function AllDreamTypesController() {
 			});
 		}
 	};
-}
+};
