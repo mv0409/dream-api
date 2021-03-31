@@ -1,6 +1,6 @@
 module.exports = {
-    extends: 'standard',
-    env: {
-      node: true
-    }
-  }
+	extends: 'standard',
+	env: {
+		node: true,
+	},
+};
