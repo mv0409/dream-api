@@ -4,9 +4,7 @@ import HttpError from '../../helpers/errors/http-error';
 export default function AllDreamTypesController() {
 	return async () => {
 		try {
-			const result = await Dream.rawAttributes.states.values;
-			// console.log(Dream.)
-			// const result = await Dream.find();
+			const result = await Dream.rawAttributes.type.values;
 
 			return {
 				headers: {
