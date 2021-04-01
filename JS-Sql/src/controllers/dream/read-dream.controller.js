@@ -2,7 +2,7 @@ import HttpError from '../../helpers/errors/http-error';
 import { Dream } from '../../../database/models';
 
 export const ReadDreamController = () => {
-	return async (req) => {
+	return async () => {
 		try {
 			const dreams = await Dream.findAll();
 			return {
