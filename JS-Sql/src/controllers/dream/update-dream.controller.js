@@ -16,7 +16,7 @@ export const UpdateDreamController = () => {
 				statusCode: 201,
 				data: {
 					success: true,
-					message: 'User Updated',
+					message: 'Dream Updated',
 				},
 			};
 		} catch (error) {
