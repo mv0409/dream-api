@@ -4,11 +4,17 @@ import { Dream } from '../../../database/models';
 export const DeleteDreamController = () => {
 	return async (req) => {
 		try {
-			await Dream.destroy({
+			const result = await Dream.destroy({
 				where: {
 					id: req.params.id,
 				},
 			});
+			if (!result) {
+				return HttpError({
+					statusCode: 422,
+					errorMessage: 'Invalid dream id',
+				});
+			}
 			return {
 				headers: {
 					'Content-Type': 'application/json',
@@ -16,7 +22,7 @@ export const DeleteDreamController = () => {
 				statusCode: 200,
 				data: {
 					success: true,
-					message: 'User Deleted',
+					message: 'Dream Deleted',
 				},
 			};
 		} catch (error) {
