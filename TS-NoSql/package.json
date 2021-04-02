@@ -6,9 +6,11 @@
 		"dev": "nodemon ./src/index.ts",
 		"start": "node build/src/index.js",
 		"clean": "rimraf coverage build tmp",
+		"prettier": "prettier --write '**/*.{ts,json}'",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint --fix \"**/*.js\"",
 		"build": "tsc -p tsconfig.release.json",
 		"build:watch": "tsc -w -p tsconfig.release.json",
-		"lint": "eslint . --ext .ts,.tsx",
 		"test": "NODE_ENV=test nodemon ./src/index.ts",
 		"test:e2e": "NODE_ENV=test jest ./__test__ --runInBand --detectOpenHandles"
 	},

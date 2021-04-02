@@ -12,7 +12,7 @@ export const CreateDreamController = () => {
 				statusCode: 201,
 				data: {
 					success: true,
-					message: 'User Created',
+					message: 'Dream Created',
 					payload: dream,
 				},
 			};

@@ -9,7 +9,7 @@ export const DeleteDreamController = () => {
 			const result = req.params;
 
 			await Dream.findOneAndDelete({
-				_id: result.id
+				_id: result.id,
 			});
 
 			return {
@@ -19,14 +19,15 @@ export const DeleteDreamController = () => {
 				statusCode: 201,
 				payload: {
 					success: true,
-					data: 'Dream has been deleted successfully',
+					data:
+						'Dream has been deleted successfully',
 				},
 			};
 		} catch (error) {
 			return makeHttpError({
 				statusCode: 400,
-				errorMessage: error.message
-			})
+				errorMessage: error.message,
+			});
 		}
 	};
 };

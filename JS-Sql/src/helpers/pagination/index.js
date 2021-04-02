@@ -1,7 +1,7 @@
-export const paginate = (pageParam, limitParam, totalResults) => {
+export const paginate = (reqParams, count) => {
 	const pagination = {};
-	const page = parseInt(pageParam);
-	const limit = parseInt(limitParam);
+	const page = parseInt(reqParams.page);
+	const limit = parseInt(reqParams.limit);
 	const startIndex = (page - 1) * limit;
 	const endIndex = page * limit;
 
@@ -12,11 +12,11 @@ export const paginate = (pageParam, limitParam, totalResults) => {
 		};
 	}
 
-	if (endIndex < totalResults) {
+	if (endIndex < count) {
 		pagination.next = {
 			page: page + 1,
 			limit: limit,
 		};
 	}
-	return { pagination, page, limit, startIndex, endIndex, totalResults };
+	return pagination;
 };

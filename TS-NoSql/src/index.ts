@@ -8,6 +8,3 @@ const routes = new Routes(controllers);
 const app = new App(routes, database);
 
 app.listen();
-
-
-

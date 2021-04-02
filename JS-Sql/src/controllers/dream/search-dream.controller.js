@@ -1,32 +1,28 @@
 import HttpError from '../../helpers/errors/http-error';
 import { Dream } from '../../../database/models';
+import { transformDreamSearch } from '../../helpers/transform/search-dream';
 import { paginate } from '../../helpers/pagination';
 
 export const SearchDreamController = () => {
 	return async (req) => {
 		try {
-			const totalResults = await Dream.count();
+			const result = transformDreamSearch(req);
 
-			const pagination = paginate(
-				req.query.page,
-				req.query.limit,
-				totalResults,
+			const { count, rows } = await Dream.findAndCountAll(
+				result,
 			);
-			const result = await Dream.findAll({
-				where: req.body,
-				offset: pagination.startIndex,
-				limit: pagination.limit,
-			});
 
+			const pagination = paginate(req.params, count);
 			return {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				statusCode: 200,
+				statusCode: 201,
 				data: {
 					success: true,
-					payload: result,
-					pagination: pagination.pagination,
+					payload: rows,
+					count,
+					pagination,
 				},
 			};
 		} catch (error) {

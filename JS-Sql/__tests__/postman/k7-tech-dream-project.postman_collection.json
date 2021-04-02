@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "90aa54f9-50ec-4c6f-9197-18aea932155f",
+		"_postman_id": "d93577ea-3c85-4856-87dd-0d6093fab1d1",
 		"name": "k7-tech-dream-project",
 		"description": "test api endpoint",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -14,7 +14,9 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/all-dream-types",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
@@ -43,9 +45,15 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/create",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
-					"path": ["api", "dream", "create"]
+					"path": [
+						"api",
+						"dream",
+						"create"
+					]
 				}
 			},
 			"response": []
@@ -68,7 +76,9 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/:id/update",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
@@ -93,15 +103,23 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/dream/6053ba55c10bd2431d9f759c/delete",
+					"raw": "http://localhost:3000/api/dream/:id/delete",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
 						"dream",
-						"6053ba55c10bd2431d9f759c",
+						":id",
 						"delete"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
 					]
 				},
 				"description": "use dream id to delete a entity"
@@ -116,9 +134,15 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/read",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
-					"path": ["api", "dream", "read"]
+					"path": [
+						"api",
+						"dream",
+						"read"
+					]
 				},
 				"description": "list of all created dreams"
 			},
@@ -140,11 +164,17 @@
 					"raw": "{\n    \"title\":\"special\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/dream/search?page=1&limit=6",
+					"raw": "http://localhost:3000/api/dream/search?page=1&limit=6&startDate&endDate",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
-					"path": ["api", "dream", "search"],
+					"path": [
+						"api",
+						"dream",
+						"search"
+					],
 					"query": [
 						{
 							"key": "page",
@@ -153,10 +183,17 @@
 						{
 							"key": "limit",
 							"value": "6"
+						},
+						{
+							"key": "startDate",
+							"value": null
+						},
+						{
+							"key": "endDate",
+							"value": null
 						}
 					]
-				},
-				"description": "query dreams by title and type use \nreq.body\n\n{\n    \"title\": \"some title,\n    \"type\": \"happy\"\n}\n\nfor date range add an Object \"dateBetween\", with props gt and lt, value shoud be a date\n\nlike this \n{\n    \"title\": \"some title,\n    \"dateBetween\" : {\n        \"gt\" : \"04-04-1990\",\n        \"lt\" : \"02-04-2020\"\n    }\n}\n\n\nuse query params for page and limit"
+				}
 			},
 			"response": []
 		}
