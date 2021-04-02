@@ -5,7 +5,6 @@ import { HttpResponse } from '../../helpers/interfaces/http-response';
 export const ReadDreamController = () => {
 	return async (): Promise<HttpResponse> => {
 		try {
-
 			const dream = await Dream.find();
 
 			return {
@@ -21,8 +20,8 @@ export const ReadDreamController = () => {
 		} catch (error) {
 			return makeHttpError({
 				statusCode: 400,
-				errorMessage: error.message
-			})
+				errorMessage: error.message,
+			});
 		}
 	};
 };
