@@ -4,11 +4,20 @@ import { Dream } from '../../../database/models';
 export const UpdateDreamController = () => {
 	return async (req) => {
 		try {
-			await Dream.update(req.body, {
-				where: {
-					id: req.params.id,
+			const [numberOfAffectedRows] = await Dream.update(
+				req.body,
+				{
+					where: {
+						id: req.params.id,
+					},
 				},
-			});
+			);
+			if (!numberOfAffectedRows) {
+				return HttpError({
+					statusCode: 422,
+					errorMessage: 'Invalid dream id',
+				});
+			}
 			return {
 				headers: {
 					'Content-Type': 'application/json',
@@ -16,7 +25,7 @@ export const UpdateDreamController = () => {
 				statusCode: 201,
 				data: {
 					success: true,
-					message: 'User Updated',
+					message: 'Dream Updated',
 				},
 			};
 		} catch (error) {

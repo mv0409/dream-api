@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon --exec babel-node ./src/index.js",
-		"lint": "eslint **/*.js",
-		"lint:fix": "eslint --fix **/*.js",
-		"prettier": "prettier --write '**/*.{ts,js,css,html,json}'",
+		"lint": "eslint \"**/*.js\"",
+		"lint:fix": "eslint --fix \"**/*.js\"",
+		"prettier": "prettier --write '**/*.{js,json}'",
 		"clean": "rimraf dist",
 		"build": "npm run clean && mkdir -p dist && babel src -s -D -d dist"
 	},

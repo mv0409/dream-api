@@ -18,7 +18,7 @@ export default function cb(controller) {
 					);
 				});
 			})
-			.catch(() => {
+			.catch((error) => {
 				logging.error('SERVER', error.message, error);
 				res.status(500).end();
 			});
