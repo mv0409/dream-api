@@ -1,7 +1,10 @@
+
+
 const getTimeStamp = (): string => {
 	return new Date().toISOString();
 };
-
+/*eslint @typescript-eslint/no-explicit-any:*/
+/*eslint @typescript-eslint/explicit-module-boundary-types:*/
 const warn = (namespace: string, message: string, object?: any): void => {
 	if (object) {
 		console.warn(
@@ -14,7 +17,8 @@ const warn = (namespace: string, message: string, object?: any): void => {
 		);
 	}
 };
-
+/*eslint @typescript-eslint/no-explicit-any:*/
+/*eslint @typescript-eslint/explicit-module-boundary-types:*/
 const error = (namespace: string, message: string, object?: any): void => {
 	if (object) {
 		console.error(
@@ -28,6 +32,8 @@ const error = (namespace: string, message: string, object?: any): void => {
 	}
 };
 
+/*eslint @typescript-eslint/no-explicit-any:*/
+/*eslint @typescript-eslint/explicit-module-boundary-types:*/
 const debug = (namespace: string, message: string, object?: any): void => {
 	if (object) {
 		console.debug(
@@ -41,6 +47,8 @@ const debug = (namespace: string, message: string, object?: any): void => {
 	}
 };
 
+/*eslint @typescript-eslint/no-explicit-any:*/
+/*eslint @typescript-eslint/explicit-module-boundary-types:*/
 const info = (namespace: string, message: string, object?: any): void => {
 	if (object) {
 		console.info(
