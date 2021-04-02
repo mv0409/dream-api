@@ -3,7 +3,6 @@
 	"trailingComma": "all",
 	"tabWidth": 8,
 	"useTabs": true,
-	"formatOnSave": true,
 	"overrides": [
 		{
 			"files": "*.ts",

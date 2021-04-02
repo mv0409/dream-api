@@ -6,6 +6,7 @@
 		"dev": "nodemon ./src/index.ts",
 		"start": "node build/src/index.js",
 		"clean": "rimraf coverage build tmp",
+		"prettier": "prettier --write '**/*.{ts,json}'",
 		"build": "tsc -p tsconfig.release.json",
 		"build:watch": "tsc -w -p tsconfig.release.json",
 		"lint": "eslint . --ext .ts,.tsx",
