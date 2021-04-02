@@ -3,7 +3,7 @@ export interface PagionationInterface {
 		page?: number;
 		limit?: number;
 	};
-	prev?: {
+	previous?: {
 		page?: number;
 		limit?: number;
 	};
