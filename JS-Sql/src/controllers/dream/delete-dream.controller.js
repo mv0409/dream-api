@@ -1,10 +1,10 @@
 import HttpError from '../../helpers/errors/http-error';
-import { Dream } from '../../../database/models';
+import Dream from '../../../database/models/dream';
 
 export const DeleteDreamController = () => {
 	return async (req) => {
 		try {
-			const result = await Dream.destroy({
+			const result = await Dream().destroy({
 				where: {
 					id: req.params.id,
 				},

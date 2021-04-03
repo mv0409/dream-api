@@ -1,10 +1,10 @@
 import HttpError from '../../helpers/errors/http-error';
-import { Dream } from '../../../database/models';
+import Dream from '../../../database/models/dream';
 
 export const UpdateDreamController = () => {
 	return async (req) => {
 		try {
-			const [numberOfAffectedRows] = await Dream.update(
+			const [numberOfAffectedRows] = await Dream().update(
 				req.body,
 				{
 					where: {

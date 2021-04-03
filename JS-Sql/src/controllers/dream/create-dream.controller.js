@@ -1,10 +1,10 @@
 import HttpError from '../../helpers/errors/http-error';
-import { Dream } from '../../../database/models';
+import Dream from '../../../database/models/dream';
 
 export const CreateDreamController = () => {
 	return async (req) => {
 		try {
-			const dream = await Dream.create(req.body);
+			const dream = await Dream().create(req.body);
 			return {
 				headers: {
 					'Content-Type': 'application/json',

@@ -1,11 +1,10 @@
-import { Dream } from '../../../database/models';
+import Dream from '../../../database/models/dream'
 import HttpError from '../../helpers/errors/http-error';
 
 export const AllDreamTypesController = () => {
 	return async () => {
 		try {
-			const result = await Dream.rawAttributes.type.values;
-
+			const result = Dream().rawAttributes.type.values;
 			return {
 				headers: {
 					'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 import HttpError from '../../helpers/errors/http-error';
-import { Dream } from '../../../database/models';
+import Dream from '../../../database/models/dream';
 import { transformDreamSearch } from '../../helpers/transform/search-dream';
 import { paginate } from '../../helpers/pagination';
 
