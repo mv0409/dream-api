@@ -14,9 +14,7 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/all-dream-types",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
 					"path": [
 						"api",
@@ -45,15 +43,9 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/create",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"api",
-						"dream",
-						"create"
-					]
+					"path": ["api", "dream", "create"]
 				}
 			},
 			"response": []
@@ -76,9 +68,7 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/:id/update",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
 					"path": [
 						"api",
@@ -105,9 +95,7 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/:id/delete",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
 					"path": [
 						"api",
@@ -134,15 +122,9 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/read",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"api",
-						"dream",
-						"read"
-					]
+					"path": ["api", "dream", "read"]
 				},
 				"description": "list of all created dreams"
 			},
@@ -166,15 +148,9 @@
 				"url": {
 					"raw": "http://localhost:3000/api/dream/search?page=1&limit=6&startDate&endDate",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"api",
-						"dream",
-						"search"
-					],
+					"path": ["api", "dream", "search"],
 					"query": [
 						{
 							"key": "page",
