@@ -13,12 +13,11 @@ app.listen(env.app.port, async () => {
 	try {
 		await db.sequelize.sync();
 		logging.info('SERVER', `APP IS RUNNING ${env.app.port}`);
-	} catch (error) {
-		logging.info('SERVER', 'CONNECTED TO POSTGRES PORT 5432');
-		logging.error(
+		logging.info(
 			'SERVER',
-			'CONNECT TO POSTGRES FAILED',
-			error.message,
+			`CONNECTED TO POSTGRES PORT ${env.db.port}`,
 		);
+	} catch (error) {
+		logging.error('SERVER', 'CONNECT FAILED', error.message);
 	}
 });

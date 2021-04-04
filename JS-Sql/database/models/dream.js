@@ -1,6 +1,8 @@
 'use strict';
-const { Model } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../connection');
+
+module.exports = () => {
 	class Dream extends Model {
 		static associate(models) {}
 	}
