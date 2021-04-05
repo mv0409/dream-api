@@ -8,14 +8,14 @@ export const paginate = (reqParams, count) => {
 	if (startIndex > 0) {
 		pagination.previous = {
 			page: page - 1,
-			limit: limit,
+			limit,
 		};
 	}
 
 	if (endIndex < count) {
 		pagination.next = {
 			page: page + 1,
-			limit: limit,
+			limit,
 		};
 	}
 	return pagination;
