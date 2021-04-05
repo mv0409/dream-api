@@ -1,14 +1,13 @@
 import HttpError from '../../helpers/errors/http-error';
 import Dream from '../../../database/models/dream';
-import { transformDreamSearch } from '../../helpers/transform/search-dream';
 import { paginate } from '../../helpers/pagination';
 
 export const SearchDreamController = () => {
 	return async (req) => {
 		try {
-			const result = transformDreamSearch(req);
+			const result = Dream().transformSearch(req);
 
-			const { count, rows } = await Dream.findAndCountAll(
+			const { count, rows } = await Dream().findAndCountAll(
 				result,
 			);
 
