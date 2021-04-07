@@ -1,21 +1,14 @@
 import express from 'express';
-import {
-	allDreams,
-	allDreamTypes,
-	createDream,
-	deleteDream,
-	searchDream,
-	updateDream,
-} from '../controllers/dream';
-import expressCallback from './express-callback';
+import * as dream from '../controllers/dream';
+import cb from '../middlewares/express-callback';
 
 const router = express.Router();
 
-router.get('/api/dream/all-dream-types', expressCallback(allDreamTypes));
-router.get('/api/dream/read', expressCallback(allDreams));
-router.post('/api/dream/create', expressCallback(createDream));
-router.delete('/api/dream/:id/delete', expressCallback(deleteDream));
-router.post('/api/dream/:id/update', expressCallback(updateDream));
-router.post('/api/dream/search', expressCallback(searchDream));
+router.get('/api/dream/types', cb(dream.allDreamTypes));
+router.get('/api/dreams', cb(dream.allDreams));
+router.post('/api/dream', cb(dream.createDream));
+router.delete('/api/dream/:id', cb(dream.deleteDream));
+router.patch('/api/dream/:id', cb(dream.updateDream));
+router.post('/api/dream/search', cb(dream.searchDream));
 
 export default router;

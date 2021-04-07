@@ -1,4 +1,4 @@
-import logging from '../../helpers/logger';
+import logging from '../helpers/logger';
 
 export default function cb(controller) {
 	return (req, res) => {
