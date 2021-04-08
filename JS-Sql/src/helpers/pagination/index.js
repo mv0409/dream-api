@@ -1,7 +1,7 @@
-export const paginate = (reqParams, count) => {
+const paginate = (req, count) => {
 	const pagination = {};
-	const page = parseInt(reqParams.page);
-	const limit = parseInt(reqParams.limit);
+	const page = parseInt(req.query.page);
+	const limit = parseInt(req.query.limit);
 	const startIndex = (page - 1) * limit;
 	const endIndex = page * limit;
 
@@ -20,3 +20,4 @@ export const paginate = (reqParams, count) => {
 	}
 	return pagination;
 };
+export default paginate

@@ -1,5 +1,5 @@
 'use strict';
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Op } = require('sequelize');
 const sequelize = require('../connection');
 
 module.exports = () => {
@@ -37,31 +37,24 @@ module.exports = () => {
 		const title = req.query.title;
 		const offset = (page - 1) * limit;
 
-		const query = {};
-		if (type) query.type = type;
-		if (title) query.title = title;
-
 		if (!page || !limit) {
 			throw new Error(
 				'Invalid query, include page and limit in url path',
 			);
 		}
 
+		const query = {};
+		if (type) query.type = type;
+		if (title) query.title = title;
+
 		if (req.query.startDate && req.query.endDate) {
 			const startDate = new Date(
-				req.query.startDate.toString(),
+				req.query.startDate,
 			);
-			const endDate = new Date(req.query.endDate.toString());
-			console.log(startDate);
-			console.log(endDate);
-			return {
-				from: {
-					$between: [startDate, endDate],
-				},
-				where: query,
-				offset,
-				limit,
-			};
+			const endDate = new Date(req.query.endDate);
+			query.date = {
+				[Op.between]: [startDate, endDate]
+			}
 		}
 
 		return {
