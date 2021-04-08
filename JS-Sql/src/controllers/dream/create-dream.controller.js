@@ -13,12 +13,12 @@ export const CreateDreamController = () => {
 				data: {
 					success: true,
 					message: 'Dream Created',
-					payload: dream,
+					dream,
 				},
 			};
 		} catch (error) {
 			return HttpError({
-				statusCode: 500,
+				statusCode: 422,
 				errorMessage: error.message,
 			});
 		}

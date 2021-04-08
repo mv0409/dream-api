@@ -12,7 +12,7 @@ export const AllDreamTypesController = () => {
 				statusCode: 200,
 				data: {
 					success: true,
-					payload: result,
+					dreamTypes: result,
 				},
 			};
 		} catch (error) {

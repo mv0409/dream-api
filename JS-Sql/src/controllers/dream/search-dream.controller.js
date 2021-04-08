@@ -19,7 +19,7 @@ export const SearchDreamController = () => {
 				statusCode: 201,
 				data: {
 					success: true,
-					payload: rows,
+					dreams: rows,
 					count,
 					pagination,
 				},

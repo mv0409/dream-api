@@ -1,7 +1,7 @@
 import express from 'express';
 import { env } from './env';
 import router from './routes';
-import db from '../database/models';
+import db from './database/models';
 import logging from './helpers/logger';
 
 const app = express();
