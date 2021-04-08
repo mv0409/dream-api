@@ -6,7 +6,7 @@ export const DeleteDreamController = () => {
 		try {
 			const result = await Dream().destroy({
 				where: {
-					id: req.params.id,
+					id: req.query.id,
 				},
 			});
 			if (!result) {

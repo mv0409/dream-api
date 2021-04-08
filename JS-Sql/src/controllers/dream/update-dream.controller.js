@@ -8,7 +8,7 @@ export const UpdateDreamController = () => {
 				req.body,
 				{
 					where: {
-						id: req.params.id,
+						id: req.query.id,
 					},
 				},
 			);

@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/api/dream/types', cb(dream.allDreamTypes));
 router.post('/api/dream', cb(dream.createDream));
 router.get('/api/dreams', cb(dream.searchDream));
-router.delete('/api/dream/:id', cb(dream.deleteDream));
-router.patch('/api/dream/:id', cb(dream.updateDream));
+router.delete('/api/dream', cb(dream.deleteDream));
+router.patch('/api/dream', cb(dream.updateDream));
 
 export default router;
