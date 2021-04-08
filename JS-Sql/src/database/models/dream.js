@@ -52,6 +52,8 @@ module.exports = () => {
 				req.query.startDate.toString(),
 			);
 			const endDate = new Date(req.query.endDate.toString());
+			console.log(startDate);
+			console.log(endDate);
 			return {
 				from: {
 					$between: [startDate, endDate],
