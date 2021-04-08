@@ -1,6 +1,6 @@
 import HttpError from '../../helpers/errors/http-error';
-import Dream from '../../../database/models/dream';
-import { paginate } from '../../helpers/pagination';
+import Dream from '../../database/models/dream';
+import paginate from '../../helpers/pagination';
 
 export const SearchDreamController = () => {
 	return async (req) => {
@@ -8,10 +8,11 @@ export const SearchDreamController = () => {
 			const result = Dream().transformSearch(req);
 
 			const { count, rows } = await Dream().findAndCountAll(
-				result,
+				result
 			);
 
-			const pagination = paginate(req.params, count);
+			const pagination = paginate(req, count);
+
 			return {
 				headers: {
 					'Content-Type': 'application/json',
@@ -19,14 +20,14 @@ export const SearchDreamController = () => {
 				statusCode: 201,
 				data: {
 					success: true,
-					payload: rows,
 					count,
+					dreams: rows,
 					pagination,
 				},
 			};
 		} catch (error) {
 			return HttpError({
-				statusCode: 500,
+				statusCode: 406,
 				errorMessage: error.message,
 			});
 		}

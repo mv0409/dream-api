@@ -1,5 +1,5 @@
 import HttpError from '../../helpers/errors/http-error';
-import Dream from '../../../database/models/dream';
+import Dream from '../../database/models/dream';
 
 export const CreateDreamController = () => {
 	return async (req) => {
@@ -13,12 +13,12 @@ export const CreateDreamController = () => {
 				data: {
 					success: true,
 					message: 'Dream Created',
-					payload: dream,
+					dream,
 				},
 			};
 		} catch (error) {
 			return HttpError({
-				statusCode: 500,
+				statusCode: 422,
 				errorMessage: error.message,
 			});
 		}

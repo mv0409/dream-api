@@ -7,26 +7,28 @@
 	},
 	"item": [
 		{
-			"name": "get all types of dreams",
+			"name": "types of Dream",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/dream/all-dream-types",
+					"raw": "http://localhost:3000/api/dream/types",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
 						"dream",
-						"all-dream-types"
+						"types"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "create a Dream entity",
+			"name": "create a Dream",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -41,11 +43,16 @@
 					"raw": "{\n    \"title\" : \"special\",\n    \"description\": \"Some dream I had\",\n    \"date\" : \"04.09.1990\",\n    \"type\": \"scary\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/dream/create",
+					"raw": "http://localhost:3000/api/dream",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
-					"path": ["api", "dream", "create"]
+					"path": [
+						"api",
+						"dream"
+					]
 				}
 			},
 			"response": []
@@ -53,7 +60,7 @@
 		{
 			"name": "update dream",
 			"request": {
-				"method": "POST",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -63,23 +70,23 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\" : \"not special\",\n    \"description\": \"some dream i had\",\n    \"date\" : \"12.4.2021\",\n    \"type\": \"sad\"\n}"
+					"raw": "{\n    \"title\" : \"special\",\n    \"description\": \"some dream i had\",\n    \"date\" : \"12.4.2021\",\n    \"type\": \"sad\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/dream/:id/update",
+					"raw": "http://localhost:3000/api/dream?id=19",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
-						"dream",
-						":id",
-						"update"
+						"dream"
 					],
-					"variable": [
+					"query": [
 						{
 							"key": "id",
-							"value": ""
+							"value": "19"
 						}
 					]
 				},
@@ -93,20 +100,21 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/dream/:id/delete",
+					"raw": "http://localhost:3000/api/dream",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
 					"path": [
 						"api",
-						"dream",
-						":id",
-						"delete"
+						"dream"
 					],
-					"variable": [
+					"query": [
 						{
 							"key": "id",
-							"value": ""
+							"value": "",
+							"disabled": true
 						}
 					]
 				},
@@ -115,25 +123,12 @@
 			"response": []
 		},
 		{
-			"name": "get all created dreams",
+			"name": "search in dreams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/dream/read",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "3000",
-					"path": ["api", "dream", "read"]
-				},
-				"description": "list of all created dreams"
-			},
-			"response": []
-		},
-		{
-			"name": "search in dreams",
-			"request": {
-				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -143,14 +138,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\":\"special\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/dream/search?page=1&limit=6&startDate&endDate",
+					"raw": "http://localhost:3000/api/dreams?page=1&limit=2&startDate=1989-03-06&endDate=1999-03-06",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3000",
-					"path": ["api", "dream", "search"],
+					"path": [
+						"api",
+						"dreams"
+					],
 					"query": [
 						{
 							"key": "page",
@@ -158,15 +158,15 @@
 						},
 						{
 							"key": "limit",
-							"value": "6"
+							"value": "2"
 						},
 						{
 							"key": "startDate",
-							"value": null
+							"value": "1989-03-06"
 						},
 						{
 							"key": "endDate",
-							"value": null
+							"value": "1999-03-06"
 						}
 					]
 				}

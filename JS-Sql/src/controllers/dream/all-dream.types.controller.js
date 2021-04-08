@@ -1,4 +1,4 @@
-import Dream from '../../../database/models/dream';
+import Dream from '../../database/models/dream';
 import HttpError from '../../helpers/errors/http-error';
 
 export const AllDreamTypesController = () => {
@@ -12,7 +12,7 @@ export const AllDreamTypesController = () => {
 				statusCode: 200,
 				data: {
 					success: true,
-					payload: result,
+					dreamTypes: result,
 				},
 			};
 		} catch (error) {

@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const env = {
+const env = {
 	app: {
 		name: process.env.APP_NAME,
 		port: process.env.APP_PORT,
@@ -15,3 +15,4 @@ export const env = {
 		port: process.env.DB_PORT,
 	},
 };
+export default env;
