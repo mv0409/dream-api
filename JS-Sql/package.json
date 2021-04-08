@@ -9,7 +9,8 @@
 		"lint:fix": "eslint --fix \"**/*.js\"",
 		"prettier": "prettier --write '**/*.{js,json}'",
 		"clean": "rimraf dist",
-		"build": "npm run clean && mkdir -p dist && babel src -s -D -d dist"
+		"build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
+		"db:migrate": "cd src/database && npx sequelize-cli db:migrate"
 	},
 	"keywords": [],
 	"author": "",

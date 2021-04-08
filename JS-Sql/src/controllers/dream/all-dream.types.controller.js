@@ -1,4 +1,4 @@
-import Dream from '../../../database/models/dream';
+import Dream from '../../database/models/dream';
 import HttpError from '../../helpers/errors/http-error';
 
 export const AllDreamTypesController = () => {

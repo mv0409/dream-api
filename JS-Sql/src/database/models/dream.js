@@ -35,9 +35,15 @@ module.exports = () => {
 	Dream.transformSearch = (req) => {
 		const page = parseInt(req.query.page);
 		const limit = parseInt(req.query.limit);
+		const type = req.query.type;
+		const title = req.query.title;
 		const queryStartDate = req.query.startDate;
 		const queryEndDate = req.query.endDate;
 		const startIndex = (page - 1) * limit;
+
+		if (!page || !limit) {
+			throw new Error('Invalid Query, include page and limit')
+		}
 
 		if (queryEndDate && queryStartDate) {
 			const startDate = new Date(queryStartDate.toString());

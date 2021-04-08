@@ -1,5 +1,5 @@
 import HttpError from '../../helpers/errors/http-error';
-import Dream from '../../../database/models/dream';
+import Dream from '../../database/models/dream';
 
 export const DeleteDreamController = () => {
 	return async (req) => {

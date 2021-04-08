@@ -1,5 +1,5 @@
 import HttpError from '../../helpers/errors/http-error';
-import Dream from '../../../database/models/dream';
+import Dream from '../../database/models/dream';
 import { paginate } from '../../helpers/pagination';
 
 export const SearchDreamController = () => {
@@ -26,7 +26,7 @@ export const SearchDreamController = () => {
 			};
 		} catch (error) {
 			return HttpError({
-				statusCode: 500,
+				statusCode: 406,
 				errorMessage: error.message,
 			});
 		}
