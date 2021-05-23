@@ -67,11 +67,24 @@ func updateDream(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonBytes)
 }
 
+func getDreamTypes(w http.ResponseWriter, r *http.Request) {
+	result := dream_model.GetDreamTypes()
+	jsonBytes, err := json.Marshal(result)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+	}
+	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(jsonBytes)
+}
+
 func HandleDreamRoutes() http.Handler {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", createDream).Methods("POST")
 	router.HandleFunc("/", getDreams).Methods("GET")
 	router.HandleFunc("/{id}", deleteDream).Methods("DELETE")
 	router.HandleFunc("/{id}", updateDream).Methods("PUT")
+	router.HandleFunc("/types", getDreamTypes).Methods("GET")
 	return router
 }

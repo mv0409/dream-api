@@ -14,15 +14,24 @@ import (
 type Dream struct {
 	ID          primitive.ObjectID `bson:"_id"`
 	Title       string             `bson:"title"`
-	Code        string             `bson:"code"`
 	Description string             `bson:"description"`
-	Completed   bool               `bson:"completed"`
+	Date        string             `bson:"date"`
+	Type        string             `bson:type`
 	CreatedAt   time.Time          `bson:"created_at"`
 	UpdatedAt   time.Time          `bson:"updated_at"`
 }
 
-func InitalMigration() {
+type Base string
 
+const (
+	Sad      Base = "sad"
+	Happy    Base = "happy"
+	Exciting Base = "exciting"
+	Scary    Base = "scary"
+)
+
+type Sequence struct {
+	DataTypesToString []Base
 }
 
 func CreateDream(dream Dream) (*mongo.InsertOneResult, error) {
@@ -35,9 +44,9 @@ func CreateDream(dream Dream) (*mongo.InsertOneResult, error) {
 	result, err := collection.InsertOne(context.TODO(), &Dream{
 		ID:          primitive.NewObjectID(),
 		Title:       dream.Title,
-		Code:        dream.Code,
 		Description: dream.Description,
-		Completed:   dream.Completed,
+		Type:        dream.Type,
+		Date:        dream.Date,
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
 	})
@@ -101,4 +110,9 @@ func UpdateDream(id primitive.ObjectID, dream Dream) (*mongo.UpdateResult, error
 		clientInstanceError = err
 	}
 	return result, clientInstanceError
+}
+
+func GetDreamTypes() (obj Sequence) {
+	obj = Sequence{[]Base{Sad, Happy, Exciting, Scary}}
+	return obj
 }
