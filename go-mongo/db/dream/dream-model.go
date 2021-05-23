@@ -16,7 +16,7 @@ type Dream struct {
 	Title       string             `bson:"title"`
 	Description string             `bson:"description"`
 	Date        string             `bson:"date"`
-	Type        string             `bson:type`
+	Type        string             `bson:"type"`
 	CreatedAt   time.Time          `bson:"created_at"`
 	UpdatedAt   time.Time          `bson:"updated_at"`
 }
@@ -31,7 +31,7 @@ const (
 )
 
 type Sequence struct {
-	DataTypesToString []Base
+	DreamTypes []Base
 }
 
 func CreateDream(dream Dream) (*mongo.InsertOneResult, error) {
