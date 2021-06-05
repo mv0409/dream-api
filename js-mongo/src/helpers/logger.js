@@ -55,8 +55,8 @@ const info = (namespace, message, object) => {
 };
 
 module.exports = {
-    info,
+	info,
 	warn,
 	error,
 	debug,
-}
+};

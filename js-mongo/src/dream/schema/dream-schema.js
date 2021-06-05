@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const possibleTypes = ['happy', 'sad', 'exciting', 'scary'];
 
@@ -30,5 +30,5 @@ const dreamSchema = new mongoose.Schema(
 
 const Dream = mongoose.model('Dream', dreamSchema);
 
-module.exports = Dream
-module.exports.possibleTypes = possibleTypes
+module.exports = Dream;
+module.exports.possibleTypes = possibleTypes;
