@@ -2,7 +2,7 @@ const express = require('express');
 const env = require('./env');
 const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
-const dreamRouter = require('./dream/routes/dream-routes');
+const dreamRoutes = require('./dream/routes/dream-routes');
 
 class App {
 	constructor() {
@@ -18,7 +18,7 @@ class App {
 	}
 
 	initRoutes() {
-		this.app.use(dreamRouter);
+		this.app.use(dreamRoutes);
 	}
 
 	async initDatabase() {
@@ -26,6 +26,7 @@ class App {
 			const options = {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
+				useFindAndModify: false,
 				poolSize: 10, // Maintain up to 10 socket connections
 				serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
 				socketTimeoutMS: 10000, // Close sockets after 45 seconds of inactivity

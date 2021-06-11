@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon ./src/index.js",
     "format": "prettier --write \"**/*.js\"",
-    "lint": "eslint --fix \"**/*.js\""
+    "lint": "eslint --fix \"**/*.js\"",
+    "start": "node ./src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^4.2.5",
+    "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.1"
@@ -36,5 +38,19 @@
       "npm run format",
       "npm run lint"
     ]
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.js$",
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }

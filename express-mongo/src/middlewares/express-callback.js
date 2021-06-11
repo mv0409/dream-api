@@ -31,4 +31,6 @@ const cb = (controller) => {
 	};
 };
 
-module.exports = cb;
+module.exports = {
+	cb,
+};

@@ -1,4 +1,4 @@
-const httpError = require('../../helpers/http-error');
+const { httpError } = require('../../helpers/http-error');
 const { possibleTypes } = require('../schema/dream-schema');
 
 const getDreamTypesController = () => {

@@ -10,4 +10,4 @@ const httpError = ({ statusCode, errorMessage }) => {
 		},
 	};
 };
-module.exports = httpError;
+module.exports = { httpError };
