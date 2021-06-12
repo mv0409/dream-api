@@ -1,0 +1,24 @@
+{
+	"development": {
+		"username": "user_1",
+		"password": "test123",
+		"database": "k7-tech-db_dev",
+		"host": "127.0.0.1",
+		"dialect": "postgres",
+		"logging": false
+	},
+	"test": {
+		"username": "user_1",
+		"password": "test123",
+		"database": "k7-tech-db_test",
+		"host": "127.0.0.1",
+		"dialect": "postgres"
+	},
+	"production": {
+		"username": "user_1",
+		"password": "test123",
+		"database": "k7-tech-db_production",
+		"host": "127.0.0.1",
+		"dialect": "postgres"
+	}
+}
