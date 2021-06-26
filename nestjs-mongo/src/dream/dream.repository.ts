@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Dream, DreamDoc } from './dream.model';
 import { IPagination } from './dream.service';
+import { Dream, DreamDocument } from './schema/dream-schema';
 
 interface IQuery {
 	title?: string;
@@ -16,8 +16,8 @@ interface IQuery {
 @Injectable()
 export class DreamRepository {
 	constructor(
-		@InjectModel('Dream')
-		private readonly dreamModel: Model<DreamDoc>,
+		@InjectModel(Dream.name)
+		private dreamModel: Model<DreamDocument>,
 	) {}
 
 	async find(
@@ -26,7 +26,7 @@ export class DreamRepository {
 		type: string,
 		title: string,
 		pagination?: IPagination,
-	): Promise<{ rows: DreamDoc[]; count: number }> {
+	): Promise<{ rows: DreamDocument[]; count: number }> {
 		const query: IQuery = {};
 		if (title) query.title = title;
 		if (type) query.type = type;
@@ -36,7 +36,7 @@ export class DreamRepository {
 				$lt: new Date(endDate),
 			};
 		}
-		let rows: DreamDoc[];
+		let rows: DreamDocument[];
 		if (pagination) {
 			rows = await this.dreamModel
 				.find(query)
@@ -49,7 +49,7 @@ export class DreamRepository {
 		return { count, rows };
 	}
 
-	async create(dream: Dream): Promise<DreamDoc> {
+	async create(dream: Dream): Promise<DreamDocument> {
 		const date = new Date(dream.date);
 		date.setTime(
 			date.getTime() - new Date().getTimezoneOffset() * 60 * 1000,
@@ -60,7 +60,7 @@ export class DreamRepository {
 		return save;
 	}
 
-	async update(id: string, dream: Dream): Promise<DreamDoc> {
+	async update(id: string, dream: Dream): Promise<DreamDocument> {
 		const updated = await this.dreamModel.findOneAndUpdate(
 			{ _id: id },
 			{ $set: dream },
@@ -68,13 +68,13 @@ export class DreamRepository {
 		);
 		return updated;
 	}
-	
-	async remove(id: string): Promise<DreamDoc> {
+
+	async remove(id: string): Promise<DreamDocument> {
 		const removed = await this.dreamModel.findByIdAndRemove(id);
 		return removed;
 	}
 
-	async findOne(id: string): Promise<DreamDoc> {
+	async findOne(id: string): Promise<DreamDocument> {
 		const find = await this.dreamModel.findById(id);
 		return find;
 	}

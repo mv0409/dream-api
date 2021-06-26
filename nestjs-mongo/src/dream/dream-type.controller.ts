@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import { DreamType } from './dream.model';
+import { dreamType } from './schema/dream-schema';
 
 @Controller('dream-type')
 export class DreamTypeController {
 	@Get('/')
 	dreamType() {
-		return DreamType;
+		return dreamType;
 	}
 }

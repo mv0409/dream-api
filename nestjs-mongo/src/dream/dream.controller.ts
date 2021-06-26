@@ -4,14 +4,16 @@ import {
 	Get,
 	Param,
 	Post,
-	Put,
 	Req,
 	Query,
 	UseInterceptors,
+	Body,
+	Patch,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { BenchmarkInterceptor } from '../interceptors/benchmark.interceptor';
 import { DreamService } from './dream.service';
+import { CreateDreamDto } from './dto/create-dream.dto';
+import { updateDreamDto } from './dto/update-dream.dto';
 
 @Controller('dream')
 @UseInterceptors(BenchmarkInterceptor)
@@ -38,13 +40,13 @@ export class DreamController {
 	}
 
 	@Post('/')
-	create(@Req() req: Request) {
-		return this.dreamService.create(req.body);
+	create(@Body() createDream: CreateDreamDto) {
+		return this.dreamService.create(createDream);
 	}
 
-	@Put('/:id')
-	update(@Req() req: Request, @Param('id') id: string) {
-		return this.dreamService.update(id, req.body);
+	@Patch('/:id')
+	update(@Body() update, @Param('id') id: string) {
+		return this.dreamService.update(id, updateDreamDto);
 	}
 
 	@Get('/:id')

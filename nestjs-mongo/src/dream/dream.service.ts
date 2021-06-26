@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Dream, DreamDoc, DreamType } from './dream.model';
+// import { Dream, DreamDoc, DreamType } from './dream.model';
 import { DreamRepository } from './dream.repository';
 
 export interface IPagination {
