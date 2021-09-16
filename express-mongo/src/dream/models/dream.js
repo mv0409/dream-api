@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const possibleTypes = ['happy', 'sad', 'exciting', 'scary'];
