@@ -110,39 +110,97 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{env}}dream?page=&limit=&startDate=&endDate=&type=&title",
+					"raw": "{{dream_host}}/dream?page=1&limit=3",
 					"host": [
-						"{{env}}dream"
+						"{{dream_host}}"
+					],
+					"path": [
+						"dream"
 					],
 					"query": [
 						{
 							"key": "page",
-							"value": ""
+							"value": "1"
 						},
 						{
 							"key": "limit",
-							"value": ""
+							"value": "3"
 						},
 						{
 							"key": "startDate",
-							"value": ""
+							"value": "",
+							"disabled": true
 						},
 						{
 							"key": "endDate",
-							"value": ""
+							"value": "",
+							"disabled": true
 						},
 						{
 							"key": "type",
-							"value": ""
+							"value": "",
+							"disabled": true
 						},
 						{
 							"key": "title",
-							"value": null
+							"value": null,
+							"disabled": true
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "dreams",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dream_host}}/dream?page=1&limit=3",
+							"host": [
+								"{{dream_host}}"
+							],
+							"path": [
+								"dream"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "startDate",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"_id\": \"60c23d021511f1d5083d7495\",\n            \"title\": \"Dream title #3\",\n            \"description\": \"Dream description #3\",\n            \"date\": \"2017-12-12T00:00:00.000Z\",\n            \"type\": \"happy\",\n            \"createdAt\": \"2021-06-10T16:25:38.874Z\",\n            \"updatedAt\": \"2021-06-10T16:25:38.874Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"60c23d0d1511f1d5083d7496\",\n            \"title\": \"Dream title #4\",\n            \"description\": \"Dream description #4\",\n            \"date\": \"2018-12-12T00:00:00.000Z\",\n            \"type\": \"happy\",\n            \"createdAt\": \"2021-06-10T16:25:49.726Z\",\n            \"updatedAt\": \"2021-06-10T16:25:49.726Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"60c23d1d1511f1d5083d7497\",\n            \"title\": \"Dream title #5\",\n            \"description\": \"Dream description #5\",\n            \"date\": \"2020-12-12T00:00:00.000Z\",\n            \"type\": \"sad\",\n            \"createdAt\": \"2021-06-10T16:26:05.930Z\",\n            \"updatedAt\": \"2021-06-10T16:26:05.930Z\",\n            \"__v\": 0\n        }\n    ],\n    \"count\": 12\n}"
+				}
+			]
 		},
 		{
 			"name": "dream by id",
