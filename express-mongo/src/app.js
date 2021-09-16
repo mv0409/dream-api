@@ -1,52 +1,38 @@
+'use strict';
+
 const express = require('express');
-const env = require('./env');
-const logger = require('./helpers/logger');
-const mongoose = require('mongoose');
-const dreamRoutes = require('./dream/routes/dream-routes');
+const MainRouter = require('./main.router');
+const config = require('./config.default');
 
 class App {
+	_router = MainRouter;
 	constructor() {
-		this.initDatabase();
-		this.app = express();
-		this.initMiddlewares();
-		this.initRoutes();
+		this._app = express();
+
+		// Initialize middlewares in order
+		this._app.use(express.json({ limit: '50mb' }));
+		this._app.use(express.urlencoded({ extended: false }));
+
+		// Public routes
+		this._app.use('/public', (_, res) => {
+			res.send({ success: true });
+		});
+
+		// Private routes
+		this._app.use('/', this._router);
+
+		// Not found error middleware
+		this._app.use((_, res) => {
+			res.status(404).json({ error: 'endpoint not found' });
+		});
 	}
 
-	initMiddlewares() {
-		this.app.use(express.json({ limit: '50mb' }));
-		this.app.use(express.urlencoded({ extended: true }));
-	}
-
-	initRoutes() {
-		this.app.use(dreamRoutes);
-	}
-
-	async initDatabase() {
-		try {
-			const options = {
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
-				useFindAndModify: false,
-				poolSize: 10, // Maintain up to 10 socket connections
-				serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
-				socketTimeoutMS: 10000, // Close sockets after 45 seconds of inactivity
-				family: 4, // Use IPv4, skip trying IPv6
-			};
-			await mongoose.connect(
-				`${env.db.url}/${env.db.name}`,
-				options,
-			);
-			logger.info('SERVER', 'CONNECTED TO MONGODB');
-		} catch (error) {
-			logger.error('SERVER', error.message, error);
-		}
-	}
-
-	init() {
-		this.app.listen(env.app.port, () => {
-			logger.info('SERVER', `APP IS RUNNING ${env.app.port}`);
+	// Start the server on the correct port
+	listen(port) {
+		this._app.listen(port, () => {
+			console.log(`🚀 Dream server started:`, config.publicDomain);
 		});
 	}
 }
 
-module.exports = App;
+module.exports = new App();
