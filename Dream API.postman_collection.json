@@ -1,31 +1,53 @@
 {
 	"info": {
-		"_postman_id": "a7826617-b952-47ba-8b08-78b25b29c156",
+		"_postman_id": "95ab73e1-b526-4262-8584-caff6e3df46a",
 		"name": "Dream API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get dream type",
+			"name": "dream type",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/dream-type",
+					"raw": "{{dream_host}}/dream/types",
 					"host": [
-						"localhost"
+						"{{dream_host}}"
 					],
-					"port": "3000",
 					"path": [
-						"dream-type"
+						"dream",
+						"types"
 					]
 				},
 				"description": "Return dream types"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "dream type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dream_host}}/dream/types",
+							"host": [
+								"{{dream_host}}"
+							],
+							"path": [
+								"dream",
+								"types"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\n    \"happy\",\n    \"sad\",\n    \"exciting\",\n    \"scary\"\n]"
+				}
+			]
 		},
 		{
-			"name": "Create dream",
+			"name": "create dream",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,127 +59,60 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Some Dream I had\",\n    \"description\": \"Interesting dreams \",\n    \"date\": \"2.2.2020\",\n    \"type\": \"happy\"\n}"
+					"raw": "{\n    \"title\": \"Dream title #5\",\n    \"description\": \"Dream description #5\",\n    \"date\": \"2020-12-12\",\n    \"type\": \"sad\"\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/dream",
+					"raw": "{{dream_host}}/dream",
 					"host": [
-						"localhost"
+						"{{dream_host}}"
 					],
-					"port": "3000",
 					"path": [
 						"dream"
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "Update dream",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"title\": \"Some Dream I had\",\n    \"description\": \"Interesting dreams \",\n    \"date\": \"2.2.2020\",\n    \"type\": \"sad\"\n}"
-				},
-				"url": {
-					"raw": "localhost:3000/dream/:id",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dream",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
+			"response": [
+				{
+					"name": "create dream",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream title #5\",\n    \"description\": \"Dream description #5\",\n    \"date\": \"2020-12-12\",\n    \"type\": \"sad\"\n}"
+						},
+						"url": {
+							"raw": "{{dream_host}}/dream",
+							"host": [
+								"{{dream_host}}"
+							],
+							"path": [
+								"dream"
+							]
 						}
-					]
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_id\": \"61430611538a046b4ca4c8f1\",\n    \"title\": \"Dream title #5\",\n    \"description\": \"Dream description #5\",\n    \"date\": \"2020-12-12T00:00:00.000Z\",\n    \"type\": \"sad\",\n    \"createdAt\": \"2021-09-16T08:53:37.638Z\",\n    \"updatedAt\": \"2021-09-16T08:53:37.638Z\",\n    \"__v\": 0\n}"
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Delete dream",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:3000/dream/:id",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dream",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "6090242c78edc9fec58e0907"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get dream by id",
+			"name": "dreams",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/dream/:id",
-					"protocol": "http",
+					"raw": "{{env}}dream?page=&limit=&startDate=&endDate=&type=&title",
 					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dream",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "6090360be1f29810b7dbba9d"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all dreams",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/dream?page=&limit=&startDate=&endDate=&type=&title",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dream"
+						"{{env}}dream"
 					],
 					"query": [
 						{
@@ -188,6 +143,219 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "dream by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dream_host}}/dream/:id",
+					"host": [
+						"{{dream_host}}"
+					],
+					"path": [
+						"dream",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get dream by id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{env}}dream/:id",
+							"host": [
+								"{{env}}dream"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_id\": \"61430611538a046b4ca4c8f1\",\n    \"title\": \"Dream title #5\",\n    \"description\": \"Dream description #5\",\n    \"date\": \"2020-12-12T00:00:00.000Z\",\n    \"type\": \"sad\",\n    \"createdAt\": \"2021-09-16T08:53:37.638Z\",\n    \"updatedAt\": \"2021-09-16T08:53:37.638Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "dream by id",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Dream title #1\",\n    \"description\": \"Dream description #1\",\n    \"date\": \"2020-12-12\",\n    \"type\": \"sad\"\n}"
+				},
+				"url": {
+					"raw": "{{dream_host}}/dream/:id",
+					"host": [
+						"{{dream_host}}"
+					],
+					"path": [
+						"dream",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "dream by id",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream title #1\",\n    \"description\": \"Dream description #1\",\n    \"date\": \"2020-12-12\",\n    \"type\": \"sad\"\n}"
+						},
+						"url": {
+							"raw": "{{dream_host}}/dream/:id",
+							"host": [
+								"{{dream_host}}"
+							],
+							"path": [
+								"dream",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_id\": \"61430611538a046b4ca4c8f1\",\n    \"title\": \"Dream title #1\",\n    \"description\": \"Dream description #1\",\n    \"date\": \"2020-12-12T00:00:00.000Z\",\n    \"type\": \"sad\",\n    \"createdAt\": \"2021-09-16T08:53:37.638Z\",\n    \"updatedAt\": \"2021-09-16T08:57:05.086Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "dream by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{dream_host}}/dream/:id",
+					"host": [
+						"{{dream_host}}"
+					],
+					"path": [
+						"dream",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "dream by id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dream_host}}/dream/:id",
+							"host": [
+								"{{dream_host}}"
+							],
+							"path": [
+								"dream",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_id\": \"61430611538a046b4ca4c8f1\",\n    \"title\": \"Dream title #1\",\n    \"description\": \"Dream description #1\",\n    \"date\": \"2020-12-12T00:00:00.000Z\",\n    \"type\": \"sad\",\n    \"createdAt\": \"2021-09-16T08:53:37.638Z\",\n    \"updatedAt\": \"2021-09-16T08:57:05.086Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dream_host",
+			"value": "localhost:3000"
 		}
 	]
 }
