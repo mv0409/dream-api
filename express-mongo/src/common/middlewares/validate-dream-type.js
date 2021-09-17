@@ -1,6 +1,6 @@
 'use strict';
 
-const { possibleTypes } = require('../../dream/models/dream');
+const { possibleTypes } = require('../../entities/dream/models/dream');
 const ErrorHandler = require('../errors/http-error');
 const handleError = require('../utils/handle-error');
 

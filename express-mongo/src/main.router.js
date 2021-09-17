@@ -1,7 +1,7 @@
 'use strict';
 
 const { Router } = require('express');
-const DreamRouter = require('./dream/dream.router');
+const DreamRouter = require('./entities/dream/dream.router');
 
 class MainRouter {
 	_router = Router();

@@ -1,5 +1,5 @@
 const validateDreamType = require('./validate-dream-type');
-const { possibleTypes } = require('../../dream/models/dream');
+const { possibleTypes } = require('../../entities/dream/models/dream');
 
 describe('🧪 Validate dream type middleware test', () => {
 	// dynamic mock of req.query.type

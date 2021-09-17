@@ -1,10 +1,10 @@
 'use strict';
 
-const ErrorHandler = require('../../common/errors/http-error');
-const handleError = require('../../common/utils/handle-error');
+const ErrorHandler = require('../../../common/errors/http-error');
+const handleError = require('../../../common/utils/handle-error');
 const { possibleTypes } = require('../models/dream');
 
-const updateDreamDto = (req, res, next) => {
+const createDreamDto = (req, res, next) => {
 	try {
 		const title = req.body.title;
 		const description = req.body.description;
@@ -23,11 +23,10 @@ const updateDreamDto = (req, res, next) => {
 		if (req.body.date.toString === 'Invalid date') {
 			throw new ErrorHandler(400, 'Invalid date');
 		}
-
 		next();
 	} catch (error) {
 		handleError(res, error);
 	}
 };
 
-module.exports = updateDreamDto;
+module.exports = createDreamDto;

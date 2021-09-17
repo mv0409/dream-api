@@ -1,6 +1,6 @@
 'use strict';
 
-const ErrorHandler = require('../common/errors/http-error');
+const ErrorHandler = require('../../common/errors/http-error');
 const { Dream } = require('./models/dream');
 
 class DreamServce {

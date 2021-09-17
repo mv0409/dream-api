@@ -3,14 +3,14 @@
 const { Router } = require('express');
 const DreamController = require('./dream.controller');
 const autoBind = require('auto-bind');
-const callback = require('../common/middlewares/promise-callback');
-const validateMongoId = require('../common/middlewares/validate-mongo-id');
+const callback = require('../../common/middlewares/promise-callback');
+const validateMongoId = require('../../common/middlewares/validate-mongo-id');
 const createDreamDto = require('./dto/create-dream.dto');
 const updateDreamDto = require('./dto/update-dream.dto');
-const validatePagination = require('../common/middlewares/validate-pagination');
-const validateDreamType = require('../common/middlewares/validate-dream-type');
-const validateDate = require('../common/middlewares/validate-date');
-const validateTitle = require('../common/middlewares/validate-title');
+const validatePagination = require('../../common/middlewares/validate-pagination');
+const validateDreamType = require('../../common/middlewares/validate-dream-type');
+const validateDate = require('../../common/middlewares/validate-date');
+const validateTitle = require('../../common/middlewares/validate-title');
 
 class DreamRouter {
 	_controller = DreamController;

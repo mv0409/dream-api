@@ -1,6 +1,6 @@
 'use strict';
 
-const handleResponse = require('../common/utils/handle-response');
+const handleResponse = require('../../common/utils/handle-response');
 const DreamService = require('./dream.service');
 const { possibleTypes } = require('./models/dream');
 
