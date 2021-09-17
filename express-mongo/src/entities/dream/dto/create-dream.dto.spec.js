@@ -47,7 +47,7 @@ describe('Create Dream Data Transfer Objec test', () => {
 		expect(mockedReq.body.date).toEqual(mockedDreamDoc.date);
 	});
 
-	it('should throw an error if req.body props are not valid ', () => {
+	it('should throw an error if req.body props are missing ', () => {
 		// generate random dto
 		const mockedDreamDoc = mockDreamDoc({});
 		// remove one prop form dto
@@ -65,6 +65,27 @@ describe('Create Dream Data Transfer Objec test', () => {
 			}
 		});
 	});
+
+	it('should throw an error if req.body props have unnecessary props ', () => {
+		// generate random dto
+		let mockedDreamDoc = mockDreamDoc({});
+		// remove one random prop to dto
+		mockedDreamDoc.bug = "my value"
+		// pass dto to request
+		let mockedReq = mockReq(mockedDreamDoc);
+		// create response
+		let mockedRes = mockRes();
+		// call dto middleware
+		expect(() => {
+			try {
+				createDreamDto(mockedReq, mockedRes, mockedNext);
+			} catch (error) {
+				expect(error.message).toBe(`Invalid dream data transfer object, unnecessary prop: bug`);
+			}
+		});
+	});
+
+	
 
 	it('should throw an error if req.body.type is not valid ', () => {
 		// generate random dto
