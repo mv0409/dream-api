@@ -1,5 +1,5 @@
 const { possibleTypes } = require('../models/dream');
-const createDreamDto = require('./create-dream.dto');
+const updateDream = require('./update-dream.dto')
 
 describe('Create Dream Data Transfer Objec test', () => {
 	// dynamic mock req.body obj
@@ -40,14 +40,14 @@ describe('Create Dream Data Transfer Objec test', () => {
 		// create resposne
 		let mockedRes = mockRes();
 		// call dto middleware
-		createDreamDto(mockedReq, mockedRes, mockedNext);
+		updateDream(mockedReq, mockedRes, mockedNext);
 		// call next function in middleware
 		expect(mockedNext.mock.calls.length).toBe(1);
 		// validate deep equal for date object
 		expect(mockedReq.body.date).toEqual(mockedDreamDoc.date);
 	});
 
-	it('should throw an error if req.body props are missing ', () => {
+	it('should throw an error if req.body props are not valid ', () => {
 		// generate random dto
 		const mockedDreamDoc = mockDreamDoc({});
 		// remove one prop form dto
@@ -66,7 +66,24 @@ describe('Create Dream Data Transfer Objec test', () => {
 		});
 	});
 
-	it('should throw an error if req.body props have unnecessary props ', () => {
+	it('should throw an error if req.body.type is not valid ', () => {
+		// generate random dto
+		const mockedDreamDoc = mockDreamDoc({ type: 'supreme' });
+		// pass dto to request
+		let mockedReq = mockReq(mockedDreamDoc);
+		// create response
+		let mockedRes = mockRes();
+		// call dto middleware
+		expect(() => {
+			try {
+				updateDream(mockedReq, mockedRes, mockedNext);
+			} catch (error) {
+				expect(error.message).toBe(`Dream types must be ${possibleTypes}`);
+			}
+		});
+	});
+
+    it('should throw an error if req.body props have unnecessary props ', () => {
 		// generate random dto
 		let mockedDreamDoc = mockDreamDoc({});
 		// add one random prop to dto
@@ -85,25 +102,6 @@ describe('Create Dream Data Transfer Objec test', () => {
 		});
 	});
 
-	
-
-	it('should throw an error if req.body.type is not valid ', () => {
-		// generate random dto
-		const mockedDreamDoc = mockDreamDoc({ type: 'supreme' });
-		// pass dto to request
-		let mockedReq = mockReq(mockedDreamDoc);
-		// create response
-		let mockedRes = mockRes();
-		// call dto middleware
-		expect(() => {
-			try {
-				createDreamDto(mockedReq, mockedRes, mockedNext);
-			} catch (error) {
-				expect(error.message).toBe(`Dream types must be ${possibleTypes}`);
-			}
-		});
-	});
-
 	it('should throw an error if req.body.date is not valid ', () => {
 		// generate random dto
 		const mockedDreamDoc = mockDreamDoc({ date: 'supreme' });
@@ -114,7 +112,7 @@ describe('Create Dream Data Transfer Objec test', () => {
 		// call dto middleware
 		expect(() => {
 			try {
-				createDreamDto(mockedReq, mockedRes, mockedNext);
+				updateDream(mockedReq, mockedRes, mockedNext);
 			} catch (error) {
 				expect(error.message).toBe('Invalid date');
 			}

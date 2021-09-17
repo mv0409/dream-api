@@ -6,6 +6,12 @@ const { possibleTypes } = require('../models/dream');
 
 const updateDreamDto = (req, res, next) => {
 	try {
+		const props = ['title', 'description', 'type', 'date'] 
+		for(const key in req.body) {
+			if(!props.includes(key)) {
+				throw new ErrorHandler(422, `Invalid dream data transfer object, unnecessary prop: ${key}` )
+			}
+		}
 		const title = req.body.title;
 		const description = req.body.description;
 		const type = req.body.type;
