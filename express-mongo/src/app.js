@@ -2,37 +2,25 @@
 
 const express = require('express');
 const MainRouter = require('./main.router');
-const config = require('./config.default');
 
-class App {
-	_router = MainRouter;
-	constructor() {
-		this._app = express();
+const app = express();
 
-		// Initialize middlewares in order
-		this._app.use(express.json({ limit: '50mb' }));
-		this._app.use(express.urlencoded({ extended: false }));
+// Initialize middlewares in order
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: false }));
 
-		// Public routes
-		this._app.use('/public', (_, res) => {
-			res.send({ success: true });
-		});
+// Public routes
+app.use('/public', (_, res) => {
+	res.send({ success: true });
+});
 
-		// Private routes
-		this._app.use('/', this._router);
+// Private routes
+app.use('/', MainRouter);
 
-		// Not found error middleware
-		this._app.use((_, res) => {
-			res.status(404).json({ error: 'endpoint not found' });
-		});
-	}
+// Not found error middleware
+app.use((_, res) => {
+	res.status(404).json({ error: 'endpoint not found' });
+})
 
-	// Start the server on the correct port
-	listen(port) {
-		this._app.listen(port, () => {
-			console.log(`🚀 Dream server started:`, config.publicDomain);
-		});
-	}
-}
-
-module.exports = new App();
+// export app for e2e testing
+module.exports = app
