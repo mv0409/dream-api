@@ -49,7 +49,9 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
     "testRegex": ".*\\.spec\\.js$",
     "collectCoverageFrom": [
       "**/*.(t|j)s"
