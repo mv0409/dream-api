@@ -1,23 +1,22 @@
-import { Router } from "express"
-import DreamRouter from "./dream/dream.router"
+import { Router } from 'express';
+import DreamRouter from './entities/dream/DreamRouter';
 
 class MainRouter {
+	private _router = Router();
+	private _subrouterDream: Router;
 
-    private _router = Router()
-    private _subrouterDream = DreamRouter
-    constructor() {
-        this._configure()
-    }
+	constructor() {
+		this._subrouterDream = new DreamRouter().router;
+		this._configure();
+	}
 
-    get router() {
-        return this._router
-    }
+	get router() {
+		return this._router;
+	}
 
-    _configure() {
-        this._router.use('/dream', this._subrouterDream)
-    }
-
-
+	_configure() {
+		this._router.use('/dream', this._subrouterDream);
+	}
 }
 
-export default new MainRouter().router
+export default MainRouter;

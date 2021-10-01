@@ -13,12 +13,13 @@
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,
-		"noUnusedLocals": true,
+		// "noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"strictNullChecks": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"include": ["src/**/*", "src/__tests__/**/*,"]
 }
