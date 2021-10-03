@@ -1,9 +1,65 @@
-import { Controller } from "@nestjs/common";
-import { DreamService } from "./dream.service";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { DreamType } from '../../common/enums/dreamType';
+import { DreamService } from './dream.service';
+import { ObjectId } from 'mongodb';
+import { UpdateDreamDto } from './dto/update-dream.dto';
+import { CreateDreamDto } from './dto/create-dream.dto';
+import { ValidateDreamTypePipe } from '../../common/pipes/validate-dream-type.pipe';
+import { ValidateDatePipe } from '../../common/pipes/validate-date.pipe';
 
 @Controller('dream')
 export class DreamController {
-    constructor(
-        private readonly dreamService: DreamService
-    ) {}
+  constructor(private readonly dreamService: DreamService) {}
+
+  @Get()
+  getDreams(
+    @Query('startDate', ValidateDatePipe) startDate: any,
+    @Query('endDate', ValidateDatePipe) endDate: any,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('type', ValidateDreamTypePipe) type: any,
+    @Query('title') title: any,
+  ) {
+    return this.dreamService.getDreams({page, limit,type, startDate, endDate, title});
+  }
+
+  @Get('/types')
+  getDreamTypes() {
+    return Object.keys(DreamType);
+  }
+
+  @Get('/:id')
+  getDream(@Param('id') _id: ObjectId) {
+    return this.dreamService.getDream(_id);
+  }
+
+  @Post()
+  createDream(
+    @Body() createDreamDto: CreateDreamDto,
+  ) {
+    return this.dreamService.createDream(createDreamDto);
+  }
+
+  @Patch('/:id')
+  updateDream(
+    @Param('id') _id: ObjectId,
+    @Body() updateDreamDto: UpdateDreamDto,
+  ) {
+    return this.dreamService.updateDream(_id, updateDreamDto);
+  }
+
+  @Delete('/:id')
+  removeDream(@Param('id') _id: ObjectId) {
+    return this.dreamService.removeDream(_id);
+  }
 }
