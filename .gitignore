@@ -1,6 +1,8 @@
 nestjs-mongo/node_modules
 nestjs-mongo/.env
+nestjs-mongo/dist
 express-mongo/node_modules
 express-mongo/.env
 express-ts-mongo/node_modules
 express-ts-mongo/.env
+express-ts-mongo/dist
