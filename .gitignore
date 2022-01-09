@@ -6,3 +6,20 @@ express-mongo/.env
 express-ts-mongo/node_modules
 express-ts-mongo/.env
 express-ts-mongo/dist
+
+springboot-mongo/HELP.md
+springboot-mongo/target/
+springboot-mongo/!.mvn/wrapper/maven-wrapper.jar
+springboot-mongo/!**/src/main/**/target/
+springboot-mongo/!**/src/test/**/target/
+
+### STS ###
+springboot-mongo/.apt_generated
+springboot-mongo/.classpath
+springboot-mongo/.factorypath
+springboot-mongo/.project
+springboot-mongo/.settings
+springboot-mongo/.springBeans
+springboot-mongo/.sts4-cache
+
+springboot-mongo/.vscode/
