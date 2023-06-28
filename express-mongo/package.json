@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "ENVIRONMENT=test jest --detectOpenHandles --forceExit",
+    "test": "ENVIRONMENT=test jest --verbose",
     "dev": "nodemon ./src/index.js",
-    "format": "prettier --write \"**/*.js\"",
+    "format": "prettier --write \"**/*.js\" \"**/*rc\"",
     "lint": "eslint --fix \"**/*.js\"",
     "start": "node ./src/index.js"
   },
@@ -54,9 +54,11 @@
     ],
     "testRegex": ".*\\.spec\\.js$",
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "src/**/*.js",
+      "test/**/*.js"
     ],
-    "coverageDirectory": "../coverage",
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
     "testEnvironment": "node"
   }
 }

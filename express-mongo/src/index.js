@@ -1,24 +1,22 @@
 'use strict';
 
-const app = require('./app');
-const mongoose = require('mongoose');
+const express = require('express');
+const MainRouter = require('./main.router');
 const config = require('./config.default');
+const { dbClient } = require('./db');
 
-// MongoDB IIFE
-const connect = (() => {
-	// connect mongoose
-	mongoose.connect(config.mongoUri, {
-		// MongoDB configuration
-		useNewUrlParser: true,
-		useFindAndModify: false,
-		useCreateIndex: true,
-		useUnifiedTopology: true,
-	}).then(() => {
-		// Start app
-		app.listen(config.port, () => {
-			console.log('🚀 Dream server started: ', config.publicDomain)
-		})
-	}).catch((error) => {
-		console.log('💥 Mongoose connection error:', error);
-	})
-})()
+const app = express();
+
+const db = dbClient(config);
+
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/', MainRouter);
+
+const server = app.listen(config.port, () => {
+  /* eslint-disable-next-line no-console */
+  console.log('🚀 Dream server started: ', config.publicDomain);
+});
+
+module.exports = { server, db };

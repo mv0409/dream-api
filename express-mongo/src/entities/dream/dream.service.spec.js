@@ -5,159 +5,101 @@ const { Types } = require('mongoose');
 const { Dream } = require('./models/dream');
 
 describe('🧪 Dream service test', () => {
-	let service = DreamServce;
+  const createDreamDto = {
+    title: 'best title 1',
+    description: 'best description',
+    type: 'happy',
+    date: '2021-11-11'
+  };
 
-	// mock dream document
-	let mockDreamDoc = (mock) => ({
-		_id: Types.ObjectId(),
-		title: mock?.title || 'Title number 1',
-		description: mock?.description || 'Description number 1',
-		date: mock?.date || new Date('2017-12-12T00:00:00.000+00:00'),
-		type: mock?.type || 'happy',
-	});
+  const updateDreamDto = {
+    id: Types.ObjectId(),
+    title: 'best title 2',
+    description: 'best description',
+    type: 'happy',
+    date: '2021-11-11'
+  };
 
-	it('should define dream service', () => {
-		expect(service).toBeDefined();
-	});
+  const mockDreamDoc = (mock) => ({
+    id: Types.ObjectId(),
+    title: mock?.title || 'Title number 1',
+    description: mock?.description || 'Description number 1',
+    date: mock?.date || new Date('2017-12-12T00:00:00.000+00:00'),
+    type: mock?.type || 'happy'
+  });
 
-	it('should find a dream document by id', async () => {
-		// create dream document
-		const dream = mockDreamDoc();
-		// spy on findOne function in model and return value
-		jest.spyOn(Dream, 'findOne').mockReturnValueOnce(dream)
-		// call service method
-		const result = await service.findOne(dream._id);
-		expect(result).toBeDefined();
-		// check value 
-		expect(result._id).toEqual(dream._id);
-	});
+  it('should define dream service', () => {
+    expect(DreamServce).toBeDefined();
+  });
 
-	it('should throw an error document for unknown id', async () => {
-		// create dream document
-		const dream = mockDreamDoc();
-		// spy on findOne function in model and return value
-		jest.spyOn(Dream, 'findOne').mockReturnValueOnce(undefined)
-		// check error
-		expect(async () => {
-			try {
-				await service.findOne(dream._id)
-			} catch (error) {
-				expect(error.message).toBe(`Dream with id: ${dream._id} not found`);
-			}
-		})
-	})
+  it('should find a dream document by id', async () => {
+    const dream = mockDreamDoc();
+    jest.spyOn(Dream, 'findOne').mockReturnValueOnce(dream);
+    const result = await DreamServce.findOne(dream.id);
+    expect(result).toBeDefined();
+    expect(result.id).toEqual(dream.id);
+  });
 
-	it('should create a dream and return document', async () => {
-		//create dream dto
-		const dreamDto = {
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on create function in model and return value
-		jest.spyOn(Dream, 'create').mockReturnValueOnce(dreamDto)
-		// call service method
-		const result = await service.create(dreamDto)
-		// check value
-		expect(result.title).toEqual(dreamDto.title);
-	})
+  it('should throw an error document for unknown id', async () => {
+    const dream = mockDreamDoc();
+    jest.spyOn(Dream, 'findOne').mockReturnValueOnce(undefined);
+    expect(async () => {
+      try {
+        await DreamServce.findOne(dream.id);
+      } catch (error) {
+        expect(error.message).toBe(`Dream with id: ${dream.id} not found`);
+      }
+    });
+  });
 
-	it('should throw an error if document is not created', async () => {
-		//create dream dto
-		const dreamDto = {
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on creaet function in model and return value
-		jest.spyOn(Dream, 'create').mockReturnValueOnce(undefined)
-		// check error
-		expect(async () => {
-			try {
-				await service.create(dreamDto)
-			} catch (error) {
-				expect(error.message).toBe(`Dream not created`);
-			}
-		})
-	})
+  it('should create a dream and return document', async () => {
+    jest.spyOn(Dream, 'create').mockReturnValueOnce(createDreamDto);
+    const result = await DreamServce.create(createDreamDto);
+    expect(result.title).toEqual(createDreamDto.title);
+  });
 
-	it('should update a dream and return new document', async () => {
-		//create dream dto
-		const dreamDto = {
-			_id: Types.ObjectId(),
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on findOneAndUpdate function in model and return value
-		jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(dreamDto)
-		// call service method
-		const result = await service.update(dreamDto._id, dreamDto)
-		// check value
-		expect(result.title).toEqual(dreamDto.title);
-	})
+  it('should throw an error if document is not created', async () => {
+    jest.spyOn(Dream, 'create').mockReturnValueOnce(undefined);
+    expect(async () => {
+      try {
+        await DreamServce.create(createDreamDto);
+      } catch (error) {
+        expect(error.message).toBe(`Dream not created`);
+      }
+    });
+  });
 
-	it('should throw an error if document is not updated', async () => {
-		//create dream dto
-		const dreamDto = {
-			_id: Types.ObjectId(),
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on findOneAndUpdate function in model and return value
-		jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(undefined)
-		// check error
-		expect(async () => {
-			try {
-				await service.update(dreamDto._id)
-			} catch (error) {
-				expect(error.message).toBe(`Dream not created`);
-			}
-		})
-	})
+  it('should update a dream and return new document', async () => {
+    jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(updateDreamDto);
+    const result = await DreamServce.update(updateDreamDto.id, updateDreamDto);
+    expect(result.title).toEqual(updateDreamDto.title);
+  });
 
-	it('should delete a dream and return deleted document', async () => {
-		//create dream dto
-		const dreamDto = {
-			_id: Types.ObjectId(),
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on findByIdAndRemove function in model and return value
-		jest.spyOn(Dream, 'findByIdAndRemove').mockReturnValueOnce(dreamDto)
-		// call service method
-		const result = await service.delete(dreamDto._id)
-		// check value
-		expect(result.title).toEqual(dreamDto.title);
-	})
+  it('should throw an error if document is not updated', async () => {
+    jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(undefined);
+    expect(async () => {
+      try {
+        await DreamServce.update(updateDreamDto.id);
+      } catch (error) {
+        expect(error.message).toBe(`Dream not created`);
+      }
+    });
+  });
 
-	it('should throw an error if document is not deleted', async () => {
-		//create dream dto
-		const dreamDto = {
-			_id: Types.ObjectId(),
-			title: 'best title',
-			description: 'best description',
-			type: 'happy',
-			date: '2021-11-11'
-		}
-		// spy on findOneAndUpdate function in model and return value
-		jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(undefined)
-		// check error
-		expect(async () => {
-			try {
-				await service.delete(dreamDto._id)
-			} catch (error) {
-				expect(error.message).toBe(`Dream with id: ${_id} not found and deleted`);
-			}
-		})
-	})
+  it('should delete a dream and return deleted document', async () => {
+    jest.spyOn(Dream, 'findByIdAndRemove').mockReturnValueOnce(createDreamDto);
+    const result = await DreamServce.delete(createDreamDto.id);
+    expect(result.title).toEqual(createDreamDto.title);
+  });
 
-
+  it('should throw an error if document is not deleted', async () => {
+    jest.spyOn(Dream, 'findOneAndUpdate').mockReturnValueOnce(updateDreamDto);
+    expect(async () => {
+      try {
+        await DreamServce.delete(dreamDto.id);
+      } catch (error) {
+        expect(error.message).toBe(`Dream with id: ${id} not found and deleted`);
+      }
+    });
+  });
 });
