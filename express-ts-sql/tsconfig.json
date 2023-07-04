@@ -1,25 +1,14 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"allowJs": true,
-		"importHelpers": true,
-		"alwaysStrict": true,
-		"sourceMap": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		// "noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitAny": true,
-		"noImplicitThis": true,
-		"strictNullChecks": true,
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true
-	},
-	"include": ["src/**/*", "src/__tests__/**/*,"]
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }

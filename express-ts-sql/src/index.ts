@@ -1,15 +1,22 @@
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-import App from './App';
-import config from './config.default';
+import express from 'express';
+import { PORT } from './config/env';
+import { loadRoutes } from './routes/main-route';
+import { dbClient } from './db/data-source';
 
-createConnection(config.typeorm)
-	.then(() => {
-		new App()._app.listen(config.port, () => {
-			console.log('🚀 Dream server started: ', config.publicDomain);
-		});
-	})
-	.catch((error) => {
-		console.log(error.message);
-		process.exit();
-	});
+const app = express();
+
+const db = dbClient();
+
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true }));
+
+loadRoutes(app);
+
+const server = app.listen(PORT, () => {
+  /* eslint-disable-next-line no-console */
+  console.log(`✔️  App started on port:${PORT}`);
+});
+
+console.log(__dirname)
+export { server, db };
