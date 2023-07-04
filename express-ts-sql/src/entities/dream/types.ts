@@ -16,7 +16,7 @@ export interface IMockDream {
   type?: DREAM_TYPE;
 }
 
-export interface IMockDreamRequest{
+export interface IMockDreamRequest {
   title?: string;
   startDate?: string;
   endDate?: string;

@@ -18,5 +18,4 @@ const server = app.listen(PORT, () => {
   console.log(`✔️  App started on port:${PORT}`);
 });
 
-console.log(__dirname)
 export { server, db };
