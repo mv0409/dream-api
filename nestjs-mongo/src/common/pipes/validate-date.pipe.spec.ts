@@ -1,11 +1,8 @@
-import { ArgumentMetadata } from '@nestjs/common';
-import { ObjectId } from 'mongodb';
-import { ValidateDatePipe } from './validate-date.pipe'
-
+import { ValidateDatePipe } from './validate-date.pipe';
 
 describe('date validation pipe', () => {
   let validateDatePipe: ValidateDatePipe;
-  
+
   beforeEach(() => {
     validateDatePipe = new ValidateDatePipe();
   });

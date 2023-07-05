@@ -7,15 +7,15 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  Query,
+  Query
 } from '@nestjs/common';
-import { DreamType } from '../../common/enums/dreamType';
 import { DreamService } from './dream.service';
 import { ObjectId } from 'mongodb';
 import { UpdateDreamDto } from './dto/update-dream.dto';
 import { CreateDreamDto } from './dto/create-dream.dto';
 import { ValidateDreamTypePipe } from '../../common/pipes/validate-dream-type.pipe';
 import { ValidateDatePipe } from '../../common/pipes/validate-date.pipe';
+import { DREAM_TYPE } from 'src/common/enums';
 
 @Controller('dream')
 export class DreamController {
@@ -23,19 +23,19 @@ export class DreamController {
 
   @Get()
   getDreams(
-    @Query('startDate', ValidateDatePipe) startDate: any,
-    @Query('endDate', ValidateDatePipe) endDate: any,
+    @Query('startDate', ValidateDatePipe) startDate: Date,
+    @Query('endDate', ValidateDatePipe) endDate: Date,
     @Query('page', ParseIntPipe) page: number,
     @Query('limit', ParseIntPipe) limit: number,
-    @Query('type', ValidateDreamTypePipe) type: any,
-    @Query('title') title: any,
+    @Query('type', ValidateDreamTypePipe) type: DREAM_TYPE,
+    @Query('title') title: string
   ) {
-    return this.dreamService.getDreams({page, limit,type, startDate, endDate, title});
+    return this.dreamService.getDreams({ page, limit, type, startDate, endDate, title });
   }
 
   @Get('/types')
   getDreamTypes() {
-    return Object.keys(DreamType);
+    return Object.values(DREAM_TYPE);
   }
 
   @Get('/:id')
@@ -44,17 +44,12 @@ export class DreamController {
   }
 
   @Post()
-  createDream(
-    @Body() createDreamDto: CreateDreamDto,
-  ) {
+  createDream(@Body() createDreamDto: CreateDreamDto) {
     return this.dreamService.createDream(createDreamDto);
   }
 
   @Patch('/:id')
-  updateDream(
-    @Param('id') _id: ObjectId,
-    @Body() updateDreamDto: UpdateDreamDto,
-  ) {
+  updateDream(@Param('id') _id: ObjectId, @Body() updateDreamDto: UpdateDreamDto) {
     return this.dreamService.updateDream(_id, updateDreamDto);
   }
 

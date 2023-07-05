@@ -1,11 +1,11 @@
 import { ArgumentMetadata } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
-import { MongoIdValidationPipe } from './validate-mongo-id.pipe'
+import { MongoIdValidationPipe } from './validate-mongo-id.pipe';
 
 describe('mongoId validation pipe', () => {
   let mongoIdValidationPipe: MongoIdValidationPipe;
-  let metadata: ArgumentMetadata = { type: 'param', data: 'id' };
-  
+  const metadata: ArgumentMetadata = { type: 'param', data: 'id' };
+
   beforeEach(() => {
     mongoIdValidationPipe = new MongoIdValidationPipe();
   });

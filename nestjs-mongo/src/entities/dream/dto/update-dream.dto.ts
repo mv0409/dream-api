@@ -1,25 +1,24 @@
 import { Type } from 'class-transformer';
 import { IsOptional, MaxLength, MinLength, IsDate, IsEnum } from 'class-validator';
-import { DreamType } from '../../../common/enums/dreamType';
+import { DREAM_TYPE } from 'src/common/enums';
 
 export class UpdateDreamDto {
+  @IsOptional()
+  @IsEnum(DREAM_TYPE)
+  type: DREAM_TYPE;
 
-    @IsOptional()
-    @IsEnum(DreamType)
-    type: DreamType
+  @IsOptional()
+  @MinLength(3)
+  @MaxLength(40)
+  title: string;
 
-    @IsOptional()
-    @MinLength(3)
-    @MaxLength(40)
-    title: string
+  @IsOptional()
+  @MinLength(3)
+  @MaxLength(40)
+  description: string;
 
-    @IsOptional()
-    @MinLength(3)
-    @MaxLength(40)
-    description: string
-
-    @Type(() => Date)
-    @IsDate()
-    @IsOptional()
-    date: Date;
+  @Type(() => Date)
+  @IsDate()
+  @IsOptional()
+  date: Date;
 }
